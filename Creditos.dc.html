@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/nocturne-80358156-ba8f-42cc-86b6-4364d8a9ddc3/styles.css">
+<script src="_ds/nocturne-80358156-ba8f-42cc-86b6-4364d8a9ddc3/_ds_bundle.js"></script>
+<script src="./image-slot.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600&family=Comfortaa:wght@300&family=Jost:wght@500&display=swap">
+<style>
+body { margin: 0; background: #000000; color: #a8ece4; font-family: 'Nunito', system-ui, sans-serif; }
+a { color: #a8ece4; } a:hover { color: #2fd3c3; }
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #000000; color: #a8ece4; font-family: 'Nunito', system-ui, sans-serif;">
+  <header style="display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px clamp(16px, 3vw, 24px);">
+    <a href="index.html" style="display: flex; align-items: baseline; gap: 10px; text-decoration: none; color: #a8ece4;">
+      <span style="font-size: 17px; font-weight: 600;">Iconosfera</span>
+      <span style="font-size: 12px; color: #6f9c97;">esfera de lo icónico</span>
+    </a>
+    <a href="index.html" style="display: flex; align-items: center; gap: 6px; font-size: 13px; text-decoration: none; color: #a8ece4;"><i class="ph ph-arrow-left" style="font-size: 14px;"></i>Volver al museo</a>
+  </header>
+
+  <main style="max-width: 1180px; padding: clamp(32px, 6vw, 72px) clamp(16px, 4vw, 64px) 96px; display: flex; flex-direction: column; gap: clamp(40px, 6vw, 72px);">
+    <div style="display: flex; flex-direction: column; gap: 14px; max-width: 720px;">
+      <div style="font-family: 'Jost', sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.32em; text-transform: uppercase; color: #a8ece4;">Créditos</div>
+      <h1 style="margin: 0; font-family: 'Comfortaa', sans-serif; font-weight: 300; font-size: clamp(28px, 4vw, 48px); line-height: 1.12; color: #d2f7f2; text-wrap: balance;">Sistema de Museos Virtuales</h1>
+      <div style="height: 1px; background: #8f6fe8; width: 100%;"></div>
+      <p style="margin: 0; font-size: 16px; line-height: 1.6; color: rgba(255,255,255,0.8); text-wrap: pretty;">Universidad Autónoma Metropolitana, Unidad Azcapotzalco · Casa abierta al tiempo. Espacio de educación pública alternativa para la difusión del Diseño, las Ciencias y las Artes.</p>
+      <a href="https://museosvirtuales.azc.uam.mx/smv/?page_id=17254" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 6px; font-size: 13px; width: fit-content; text-decoration: none; color: #2fd3c3;"><i class="ph ph-arrow-up-right" style="font-size: 13px;"></i>Página original de créditos</a>
+    </div>
+
+    <section style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: clamp(24px, 3vw, 40px);">
+      <article style="display: flex; flex-direction: column; gap: 14px;">
+        <a href="https://museosvirtuales.azc.uam.mx/smv/?page_id=17185" target="_blank" rel="noopener" title="Ver perfil completo de Roberto Real de León" style="display: block; aspect-ratio: 4 / 5; width: 100%; position: relative; background: #061012; border-radius: 8px; overflow: hidden; transition: box-shadow .25s, transform .25s;" style-hover="box-shadow: 0 0 0 1px #8f6fe8; transform: translateY(-2px);">
+          <image-slot id="credito-roberto-real" shape="rounded" radius="8" placeholder="Imagen · Roberto Real de León"></image-slot>
+        </a>
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          <a href="https://museosvirtuales.azc.uam.mx/smv/?page_id=17185" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 8px; width: fit-content; font-family: 'Comfortaa', sans-serif; font-weight: 300; font-size: 22px; color: #d2f7f2; text-decoration: none;" style-hover="color: #2fd3c3;">Roberto Real de León<i class="ph ph-arrow-up-right" style="font-size: 16px;"></i></a>
+          <div style="font-family: 'Jost', sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: #6f9c97;">SMV · UAM Azcapotzalco</div>
+        </div>
+      </article>
+      <article style="display: flex; flex-direction: column; gap: 14px;">
+        <a href="https://museosvirtuales.azc.uam.mx/smv/?page_id=17221" target="_blank" rel="noopener" title="Ver perfil completo de Julia Vargas Rubio" style="display: block; aspect-ratio: 4 / 5; width: 100%; position: relative; background: #061012; border-radius: 8px; overflow: hidden; transition: box-shadow .25s, transform .25s;" style-hover="box-shadow: 0 0 0 1px #8f6fe8; transform: translateY(-2px);">
+          <image-slot id="credito-julia-vargas" shape="rounded" radius="8" placeholder="Imagen · Julia Vargas Rubio"></image-slot>
+        </a>
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          <a href="https://museosvirtuales.azc.uam.mx/smv/?page_id=17221" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 8px; width: fit-content; font-family: 'Comfortaa', sans-serif; font-weight: 300; font-size: 22px; color: #d2f7f2; text-decoration: none;" style-hover="color: #2fd3c3;">Julia Vargas Rubio<i class="ph ph-arrow-up-right" style="font-size: 16px;"></i></a>
+          <div style="font-family: 'Jost', sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: #6f9c97;">SMV · UAM Azcapotzalco</div>
+        </div>
+      </article>
+      <article style="display: flex; flex-direction: column; gap: 14px;">
+        <a href="https://museosvirtuales.azc.uam.mx/smv/?page_id=17274" target="_blank" rel="noopener" title="Ver perfil completo de Marco Antonio Flores Enríquez" style="display: block; aspect-ratio: 4 / 5; width: 100%; position: relative; background: #061012; border-radius: 8px; overflow: hidden; transition: box-shadow .25s, transform .25s;" style-hover="box-shadow: 0 0 0 1px #8f6fe8; transform: translateY(-2px);">
+          <image-slot id="credito-marco-flores" shape="rounded" radius="8" placeholder="Imagen · Marco Antonio Flores Enríquez"></image-slot>
+        </a>
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          <a href="https://museosvirtuales.azc.uam.mx/smv/?page_id=17274" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 8px; width: fit-content; font-family: 'Comfortaa', sans-serif; font-weight: 300; font-size: 22px; color: #d2f7f2; text-decoration: none;" style-hover="color: #2fd3c3;">Marco Antonio Flores Enríquez<i class="ph ph-arrow-up-right" style="font-size: 16px;"></i></a>
+          <div style="font-family: 'Jost', sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: #6f9c97;">SMV · UAM Azcapotzalco</div>
+        </div>
+      </article>
+    </section>
+
+    <section style="display: flex; flex-direction: column; gap: 8px; max-width: 720px; font-size: 13px; line-height: 1.6; color: #ffffff;">
+      <div style="font-family: 'Jost', sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: #ffffff;">Iconosfera</div>
+      <p style="margin: 0; text-wrap: pretty;">Esfera de lo icónico: la acumulación masiva de estímulos visuales no es solo decoración, sino un entorno que moldea profundamente nuestra forma de pensar, percibir la realidad y relacionarnos. Concepto de Román Gubern, <em>La mirada opulenta</em> (1987).</p>
+    </section>
+  </main>
+</div>
+</x-dc>
+</body>
+</html>

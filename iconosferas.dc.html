@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="ext-resource-dependency" content="./interpretaciones.json" data-resource-id="interp_json">
+<script src="./support.js"></script>
+</head>
+<body>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#000"/><circle cx="50" cy="50" r="20" fill="none" stroke="#2fd3c3" stroke-width="3"/><circle cx="50" cy="50" r="8" fill="#2fd3c3"/></svg></template>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/nocturne-80358156-ba8f-42cc-86b6-4364d8a9ddc3/styles.css">
+<script src="_ds/nocturne-80358156-ba8f-42cc-86b6-4364d8a9ddc3/_ds_bundle.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@300;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap">
+<style>
+:root, body {
+  --font-body: 'Nunito', system-ui, sans-serif; --font-heading: 'Nunito', system-ui, sans-serif;
+  --color-bg: #000000; --color-surface: #061012; --color-text: #a8ece4;
+  --color-accent: #2fd3c3; --color-accent-100: #d2f7f2; --color-accent-200: #a8ece4; --color-accent-300: #7ee0d5; --color-accent-400: #52d6c8; --color-accent-500: #2fd3c3; --color-accent-600: #1fa89b; --color-accent-700: #157a71; --color-accent-800: #0d4f4a; --color-accent-900: #072b28;
+  --t-1: #a8ece4; --t-2: #2fd3c3; --t-muted: #6f9c97;
+  --color-neutral-100: #d6ebe8; --color-neutral-200: #b3d3cf; --color-neutral-300: #8fb8b3; --color-neutral-400: #6f9c97; --color-neutral-500: #557e7a; --color-neutral-600: #3d5f5c; --color-neutral-700: #27403e; --color-neutral-800: #152523; --color-neutral-900: #0a1312;
+}
+html, body { margin: 0; height: 100%; background: var(--color-bg); color: var(--color-text); font-family: var(--font-body); overflow: hidden; }
+* { scrollbar-width: thin; scrollbar-color: var(--color-accent-700) transparent; }
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--color-accent-700); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-accent-500); }
+a { color: var(--t-1); }
+a:hover { color: var(--t-2); }
+</style>
+</helmet>
+<div style="position: relative; width: 100%; height: 100vh; overflow: hidden; background: var(--color-bg);">
+  <div ref="{{ stageRef }}" style="position: absolute; inset: 0; cursor: grab; touch-action: none; user-select: none; opacity: {{ stageOp }}; transition: opacity 0.6s ease;"></div>
+
+  <header class="nav" style="--color-text: #e6e6e6; --t-1: #e6e6e6; --t-2: #ffffff; --t-muted: #8c8c8c; --color-accent: #d9d9d9; --color-accent-100: #f2f2f2; --color-accent-200: #e0e0e0; --color-accent-300: #c8c8c8; --color-accent-400: #b0b0b0; --color-accent-500: #d9d9d9; --color-accent-600: #8a8a8a; --color-accent-700: #555555; --color-accent-800: #333333; --color-accent-900: #1a1a1a; --color-neutral-100: #e6e6e6; --color-neutral-200: #cccccc; --color-neutral-300: #b3b3b3; --color-neutral-400: #8c8c8c; --color-neutral-500: #6b6b6b; --color-neutral-600: #4d4d4d; --color-neutral-700: #333333; --color-neutral-800: #1f1f1f; --color-neutral-900: #0f0f0f; color: var(--color-text); position: absolute; top: 0; left: 0; right: 0; z-index: 3000; background: linear-gradient(var(--color-bg) 30%, transparent); pointer-events: auto;">
+    <div class="nav-brand" style="display: flex; align-items: center; gap: var(--space-3); white-space: nowrap; flex-shrink: 0;">
+      <span style="display: flex; align-items: baseline; gap: var(--space-3);">Iconosfera <span title="La acumulación masiva de estímulos visuales no es solo decoración: es un entorno que moldea profundamente nuestra forma de pensar, percibir la realidad y relacionarnos. — Concepto de Román Gubern, La mirada opulenta. Exploración de la iconosfera contemporánea (1987)." style="display: flex; align-items: baseline; gap: var(--space-2); font-size: 12px; font-weight: 400; color: var(--t-muted); letter-spacing: 0.02em;">esfera de lo icónico <span style="opacity: 0.7;">· concepto de Román Gubern, <em>La mirada opulenta</em> (1987)</span></span></span>
+    </div>
+    <div style="flex: 1;"></div>
+    <div style="display: flex; align-items: center; gap: var(--space-2); flex-shrink: 0;">
+      <a href="Creditos.dc.html" style="display: flex; align-items: center; gap: 6px; padding: 6px 12px; font-size: 13px; color: var(--t-1); text-decoration: none; border-radius: var(--radius-md);" style-hover="color: var(--color-accent);">Créditos</a>
+      <button class="btn btn-ghost btn-icon" onClick="{{ toggleMenu }}" aria-label="{{ menuLabel }}" title="{{ menuLabel }}"><i class="{{ menuIcon }}" style="font-size: 18px;"></i></button>
+      <button class="btn btn-ghost btn-icon" onClick="{{ toggleFs }}" aria-label="{{ fsLabel }}" title="{{ fsLabel }}"><i class="{{ fsIcon }}" style="font-size: 18px;"></i></button>
+    </div>
+  </header>
+
+  <aside style="--color-text: #e6e6e6; --t-1: #e6e6e6; --t-2: #ffffff; --t-muted: #8c8c8c; --color-accent: #d9d9d9; --color-accent-100: #f2f2f2; --color-accent-200: #e0e0e0; --color-accent-300: #c8c8c8; --color-accent-400: #b0b0b0; --color-accent-500: #d9d9d9; --color-accent-600: #8a8a8a; --color-accent-700: #555555; --color-accent-800: #333333; --color-accent-900: #1a1a1a; --color-neutral-100: #e6e6e6; --color-neutral-200: #cccccc; --color-neutral-300: #b3b3b3; --color-neutral-400: #8c8c8c; --color-neutral-500: #6b6b6b; --color-neutral-600: #4d4d4d; --color-neutral-700: #333333; --color-neutral-800: #1f1f1f; --color-neutral-900: #0f0f0f; color: var(--color-text); position: absolute; top: 72px; left: var(--space-6); width: 290px; max-width: calc(100% - 32px); z-index: 3000; display: flex; flex-direction: column; gap: var(--space-8); border-radius: 8px; background: rgba(0,0,0,0); box-shadow: 0 0 0 16px rgba(0,0,0,0); transition: width .4s cubic-bezier(.2,.7,.2,1), background .3s, box-shadow .3s, transform .45s cubic-bezier(.2,.7,.2,1), opacity .3s; transform: {{ menuTransform }}; opacity: {{ menuOpacity }}; pointer-events: {{ menuPE }};" style-hover="width: 580px; background: rgba(0,0,0,0.82); box-shadow: 0 0 0 16px rgba(0,0,0,0.82);">
+    <div style="display: flex; flex-direction: column; gap: var(--space-2);">
+      <div class="card-kicker">Morfogénesis · {{ count }} obras</div>
+      <h1 style="margin: 0; font-size: 34px; line-height: 1.08; letter-spacing: -0.02em; text-wrap: balance;">{{ albumTitle }}</h1>
+      <p style="margin: 0; font-size: 13px; line-height: 1.5; color: var(--t-muted); text-wrap: pretty;">{{ albumDesc }}</p>
+      <sc-if value="{{ hasAlbumAuthor }}" hint-placeholder-val="{{ false }}">
+        <div style="font-size: 12px; color: #ffffff;">Obra de {{ albumAuthor }}</div>
+      </sc-if>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: var(--space-2); position: relative;">
+      <div style="position: relative;">
+        <i class="ph ph-magnifying-glass" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--t-muted); font-size: 15px; pointer-events: none;"></i>
+        <input class="input" type="search" placeholder="Buscar obra, forma, técnica…" value="{{ q }}" onChange="{{ onSearch }}" style="padding-left: 32px; background: color-mix(in srgb, var(--color-bg) 70%, transparent);">
+      </div>
+      <sc-if value="{{ hasResults }}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; flex-direction: column; background: var(--color-surface); border-radius: var(--radius-md); box-shadow: var(--shadow-md); padding: var(--space-1); max-height: 240px; overflow: auto;">
+          <sc-for list="{{ results }}" as="r" hint-placeholder-count="0">
+            <button onClick="{{ r.go }}" style="display: flex; align-items: center; gap: var(--space-3); padding: var(--space-2); background: transparent; border: 0; border-radius: var(--radius-sm); color: var(--color-text); font: inherit; font-size: 13px; text-align: left; cursor: pointer;" style-hover="background: var(--color-neutral-800);">
+              <div role="img" style="width: 40px; height: 30px; object-fit: cover; border-radius: var(--radius-sm); background: center / cover no-repeat url({{ r.bg }}); flex-shrink: 0;"></div>
+              <span style="display: flex; flex-direction: column; gap: 1px;"><span>{{ r.title }}</span><span style="font-size: 11px; color: var(--t-muted);">{{ r.meta }}</span></span>
+            </button>
+          </sc-for>
+        </div>
+      </sc-if>
+      <sc-if value="{{ noResults }}" hint-placeholder-val="{{ false }}">
+        <div style="font-size: 12px; color: var(--t-muted);">Sin coincidencias.</div>
+      </sc-if>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: var(--space-2);">
+      <div style="font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--t-muted);">Colección</div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: var(--space-2); max-height: 50vh; overflow-y: auto; padding-right: 4px;">
+        <sc-for list="{{ sources }}" as="o" hint-placeholder-count="6">
+          <button onClick="{{ o.go }}" title="{{ o.label }}" style="display: flex; flex-direction: column; gap: 4px; padding: 0; background: transparent; border: 0; color: var(--color-text); font: inherit; text-align: left; cursor: pointer; opacity: {{ o.op }}; position: relative;" style-hover="opacity: 1;">
+            <div role="img" style="width: 100%; aspect-ratio: 4 / 3; border-radius: var(--radius-sm); background: var(--color-surface) center / cover no-repeat url({{ o.bg }}); outline: {{ o.ring }}; outline-offset: 1px;"></div>
+            <sc-if value="{{ o.seen }}" hint-placeholder-val="{{ false }}">
+              <span title="Ya vista" style="position: absolute; top: 4px; right: 4px; width: 16px; height: 16px; border-radius: 50%; background: rgba(0,0,0,0.65); border: 1px solid #8f6fe8; display: flex; align-items: center; justify-content: center; color: #ffffff; font-size: 10px;"><i class="ph ph-check"></i></span>
+            </sc-if>
+            <span style="font-size: 10px; line-height: 1.25; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; color: {{ o.col }};">{{ o.title }}</span>
+            <span style="font-size: 9px; line-height: 1.2; letter-spacing: 0.04em; color: #8f6fe8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ o.acct }}</span>
+          </button>
+        </sc-for>
+      </div>
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: var(--space-2);">
+        <div style="font-size: 11px; color: var(--t-muted);">{{ srcStatus }}</div>
+        <button class="btn btn-ghost" onClick="{{ exportCache }}" title="Descargar interpretaciones.json con las interpretaciones guardadas" style="font-size: 11px; padding: 2px 6px;"><i class="ph ph-download-simple"></i> Caché</button>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: var(--space-2);">
+      <div style="font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--t-muted);">Categoría de forma</div>
+      <div style="display: flex; flex-wrap: wrap; gap: var(--space-2);">
+        <sc-for list="{{ filters }}" as="f" hint-placeholder-count="6">
+          <button class="tag {{ f.cls }}" onClick="{{ f.go }}" style="border: 0; cursor: pointer; font: inherit; font-size: 12px; padding: 4px 10px;">{{ f.label }}</button>
+        </sc-for>
+      </div>
+      <sc-if value="{{ hasSubs }}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; flex-direction: column; gap: var(--space-2); padding-left: var(--space-3); border-left: 1px solid var(--color-accent-800);">
+          <div style="font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--t-muted);">Subcategoría · {{ filterName }}</div>
+          <div style="display: flex; flex-wrap: wrap; gap: var(--space-2);">
+            <sc-for list="{{ subFilters }}" as="f" hint-placeholder-count="0">
+              <button class="tag {{ f.cls }}" onClick="{{ f.go }}" style="border: 0; cursor: pointer; font: inherit; font-size: 12px; padding: 4px 10px;">{{ f.label }}</button>
+            </sc-for>
+          </div>
+        </div>
+      </sc-if>
+    </div>
+  </aside>
+
+  <sc-if value="{{ hasSel }}" hint-placeholder-val="{{ false }}">
+    <aside style="position: absolute; top: 72px; right: var(--space-6); bottom: var(--space-6); width: 340px; max-width: calc(100% - 32px); z-index: 3000; display: block; padding: var(--space-4); background: #000000; backdrop-filter: blur(14px); border-radius: 0; box-shadow: none; overflow: auto; border: 0;">
+      <div style="display: flex; flex-direction: column; gap: var(--space-4);">
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: var(--space-3);">
+        <span class="card-kicker">{{ sel.forma }} · {{ selAlbum }}</span>
+        <button class="btn btn-ghost btn-icon" onClick="{{ close }}" aria-label="Cerrar"><i class="ph ph-x" style="font-size: 16px;"></i></button>
+      </div>
+      <div class="lighten" style="border-radius: var(--radius-md); overflow: hidden; background: var(--color-bg);">
+        <div role="img" aria-label="{{ sel.title }}" style="display: block; width: 100%; aspect-ratio: {{ selAR }}; max-height: 60vh; background: center / contain no-repeat url({{ sel.bg }});"></div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: var(--space-2);">
+        <h2 style="margin: 0; font-size: 22px; line-height: 1.15;">{{ sel.title }}</h2>
+        <p style="margin: 0; font-size: 13px; line-height: 1.55; color: var(--t-muted); text-wrap: pretty;">{{ sel.desc }}</p>
+        <sc-if value="{{ hasInterp }}" hint-placeholder-val="{{ false }}">
+          <div style="display: flex; flex-direction: column; gap: var(--space-2); padding-top: var(--space-2);">
+            <div style="display: flex; align-items: center; gap: 10px; font-family: 'Jost', sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--t-1);">Interpretación</div>
+            <p style="margin: 0; font-size: 13px; line-height: 1.55; color: rgba(255,255,255,0.8); text-wrap: pretty;">{{ sel.interp }}</p>
+            <div style="display: flex; flex-wrap: wrap; gap: var(--space-2);">
+              <sc-for list="{{ selTemas }}" as="t" hint-placeholder-count="0">
+                <span class="tag tag-outline">{{ t }}</span>
+              </sc-for>
+            </div>
+            <div style="font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--t-muted); padding-top: var(--space-2);">Posibles referencias · atribución tentativa</div>
+            <div style="display: flex; flex-direction: column; gap: 4px;">
+              <sc-for list="{{ selRefs }}" as="r" hint-placeholder-count="0">
+                <div style="display: flex; gap: 8px; font-size: 12px; line-height: 1.45; color: var(--t-1);"><i class="ph ph-book-open" style="font-size: 13px; margin-top: 2px; color: var(--t-muted);"></i><span>{{ r }}</span></div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ hasSelUrl }}" hint-placeholder-val="{{ false }}">
+          <a href="{{ selUrl }}" target="_blank" rel="noopener" style="font-size: 12px; display: flex; align-items: center; gap: 6px;">Ver en Flickr <i class="ph ph-arrow-up-right"></i></a>
+        </sc-if>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: var(--space-2);">
+        <span class="tag tag-accent">{{ sel.forma }}</span>
+        <span class="tag tag-outline">{{ sel.sub }}</span>
+      </div>
+      <sc-if value="{{ hasSelExtra }}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; flex-direction: column; gap: var(--space-2);">
+          <div style="font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--t-muted);">También podría ser</div>
+          <div style="display: flex; flex-wrap: wrap; gap: var(--space-2);">
+            <sc-for list="{{ selExtraBtns }}" as="t" hint-placeholder-count="0">
+              <button class="tag tag-neutral" onClick="{{ t.go }}" title="Buscar imágenes con esta categoría" style="border: 0; cursor: pointer; font: inherit; font-size: 12px;">{{ t.label }}</button>
+            </sc-for>
+          </div>
+        </div>
+      </sc-if>
+
+
+      </div>
+    </aside>
+  </sc-if>
+
+  <sc-if value="{{ navFull }}" hint-placeholder-val="{{ true }}">
+  <div style="position: absolute; right: var(--space-6); bottom: var(--space-4); z-index: 2500; display: flex; gap: var(--space-4); font-size: 12px; color: var(--t-muted); pointer-events: none; white-space: nowrap;">
+    <span style="display: flex; align-items: center; gap: var(--space-2);"><i class="ph ph-hand-grabbing"></i> Arrastra para rotar</span>
+    <span style="display: flex; align-items: center; gap: var(--space-2);"><i class="ph ph-mouse-scroll"></i> Rueda para acercar</span>
+    <span style="display: flex; align-items: center; gap: var(--space-2);"><i class="ph ph-cursor-click"></i> Clic para abrir ficha</span>
+  </div>
+  </sc-if>
+</div>
+<div onClick="{{ closeViewer }}" role="dialog" aria-label="{{ viewerTitle }}" onMouseMove="{{ viewerWake }}" style="position: fixed; inset: 0; z-index: 9000; background: #000000; display: flex; align-items: center; justify-content: center; cursor: zoom-out; transition: opacity .45s ease; opacity: {{ viewerOpacity }}; pointer-events: {{ viewerPE }};">
+  <div style="width: 100%; height: 100%; background: center / contain no-repeat url({{ viewerSrc }}); transition: transform .55s cubic-bezier(.2,.7,.2,1); transform: {{ viewerScale }};"></div>
+  <button onClick="{{ viewerPrev }}" aria-label="Imagen anterior" title="Anterior (←)" style="position: absolute; left: var(--space-4); top: 50%; transform: translateY(-50%); z-index: 2; width: 52px; height: 52px; border-radius: 999px; border: 1px solid rgba(255,255,255,.35); background: rgba(0,0,0,.28); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer;" style-hover="background: rgba(0,0,0,.5);"><i class="ph ph-caret-left" style="font-size: 22px;"></i></button>
+  <button onClick="{{ viewerNext }}" aria-label="Imagen siguiente" title="Siguiente (→)" style="position: absolute; right: var(--space-4); top: 50%; transform: translateY(-50%); z-index: 2; width: 52px; height: 52px; border-radius: 999px; border: 1px solid rgba(255,255,255,.35); background: rgba(0,0,0,.28); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer;" style-hover="background: rgba(0,0,0,.5);"><i class="ph ph-caret-right" style="font-size: 22px;"></i></button>
+  <div style="position: absolute; top: var(--space-4); right: calc(var(--space-4) + 48px); z-index: 2; display: flex; align-items: center; gap: 10px;"><span style="font-family: 'Jost', sans-serif; font-size: 12px; letter-spacing: 0.2em; color: rgba(255,255,255,.85); text-shadow: 0 1px 8px rgba(0,0,0,.8);">{{ viewerCount }}</span><button onClick="{{ viewerToggleInfo }}" aria-label="{{ viewerInfoLabel }}" title="{{ viewerInfoLabel }} (I)" class="btn btn-ghost btn-icon" style="color: #ffffff;"><i class="{{ viewerInfoIcon }}" style="font-size: 20px;"></i></button></div>
+  <button class="btn btn-ghost btn-icon" aria-label="Regresar" title="Regresar" style="position: absolute; top: var(--space-4); right: var(--space-4); color: #ffffff;"><i class="ph ph-arrows-in" style="font-size: 20px;"></i></button>
+  
+  <div style="position: absolute; left: 0; right: 0; bottom: 0; height: clamp(260px, 36vh, 420px); background: linear-gradient(to top, rgba(0,0,0,.85), rgba(0,0,0,.5) 55%, transparent); pointer-events: none; transition: opacity 1.2s ease; opacity: {{ viewerInfoOp }};"></div>
+  <div style="position: absolute; left: clamp(20px, 4vw, 64px); bottom: clamp(20px, 5vh, 56px); max-width: min(78vw, 1100px); display: flex; flex-direction: column; gap: 16px; pointer-events: none; transition: opacity 1.2s ease; opacity: {{ viewerInfoOp }}; overflow: visible; text-shadow: 0 2px 30px rgba(0,0,0,.85);">
+    <div style="display: flex; align-items: center; gap: 14px; font-family: 'Jost', sans-serif; font-weight: 500; font-size: 13px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--t-1);">{{ viewerKicker }}</div>
+    <div style="font-family: 'Comfortaa', sans-serif; font-weight: 300; font-size: clamp(13px, 1.95vw, 34px); line-height: 1.15; letter-spacing: 0.01em; text-transform: uppercase; color: var(--color-accent-200); background: linear-gradient(100deg, var(--color-accent-200) 0%, var(--color-accent-200) 25%, rgba(255,255,255,0.85) 70%, rgba(255,255,255,0.25) 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; text-wrap: balance;">{{ viewerTitle }}</div>
+    <div style="width: calc(100vw - clamp(20px, 4vw, 64px)); height: 1px; background: #8f6fe8;"></div>
+    <sc-if value="{{ viewerHasInterp }}" hint-placeholder-val="{{ false }}">
+      <div style="position: relative; z-index: 0; display: grid; grid-template-columns: minmax(0, 640px) minmax(0, 320px) max-content; gap: clamp(16px, 3vw, 48px); align-items: start; padding-top: 6px; margin-top: -16px;"><div style="position: absolute; z-index: -1; top: 0; left: calc(-1 * clamp(20px, 4vw, 64px)); width: 100vw; bottom: calc(-1 * clamp(20px, 5vh, 56px)); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); background: transparent; pointer-events: none;"></div>
+        <p style="margin: 12px 0 0; font-size: clamp(15px, 1.35vw, 20px); line-height: 1.5; color: rgba(255,255,255,0.8); text-wrap: pretty;">{{ viewerInterp }}</p>
+        <div style="display: flex; flex-direction: column; gap: 6px; padding-top: 14px;">
+          <div style="font-family: 'Jost', sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--t-muted);">{{ viewerTemas }}</div>
+          <sc-for list="{{ viewerRefs }}" as="r" hint-placeholder-count="0">
+            <div style="font-size: 13px; line-height: 1.4; color: var(--t-1);">{{ r }}</div>
+          </sc-for>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px; padding-top: 14px; pointer-events: auto;">
+          <div style="font-family: 'Jost', sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--t-muted);">Descargar</div>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+            <sc-for list="{{ viewerDownloads }}" as="d" hint-placeholder-count="2">
+              <a href="{{ d.url }}" onClick="{{ d.go }}" title="{{ d.title }}" style="display: flex; align-items: center; gap: 6px; padding: 6px 12px; border: 1px solid rgba(255,255,255,0.28); border-radius: 999px; font-size: 12px; white-space: nowrap; color: var(--t-1); text-decoration: none; background: rgba(0,0,0,0.25); transition: border-color .2s, background .2s;" style-hover="border-color: #8f6fe8; background: rgba(143,111,232,0.18);"><i class="ph ph-download-simple" style="font-size: 14px;"></i>{{ d.label }}</a>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+    <sc-if value="{{ viewerNoInterp }}" hint-placeholder-val="{{ false }}">
+      <div style="display: flex; flex-direction: column; gap: 8px; padding-top: 6px; pointer-events: auto;">
+        <div style="font-family: 'Jost', sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--t-muted);">Descargar</div>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+          <sc-for list="{{ viewerDownloads }}" as="d" hint-placeholder-count="2">
+            <a href="{{ d.url }}" onClick="{{ d.go }}" title="{{ d.title }}" style="display: flex; align-items: center; gap: 6px; padding: 6px 12px; border: 1px solid rgba(255,255,255,0.28); border-radius: 999px; font-size: 12px; white-space: nowrap; color: var(--t-1); text-decoration: none; background: rgba(0,0,0,0.25); transition: border-color .2s, background .2s;" style-hover="border-color: #8f6fe8; background: rgba(143,111,232,0.18);"><i class="ph ph-download-simple" style="font-size: 14px;"></i>{{ d.label }}</a>
+          </sc-for>
+        </div>
+      </div>
+    </sc-if>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;autoRotate&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;showIndirect&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;tourSeconds&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:6,&quot;min&quot;:3,&quot;max&quot;:15,&quot;step&quot;:1,&quot;unit&quot;:&quot;s&quot;,&quot;tsType&quot;:&quot;number&quot;}}">
+class Component extends DCLogic {
+  state = { active: [], src: '', albums: [], loading: false, flickrErr: null, subFilter: 'Todas', menu: true, fs: false, sel: null, q: '', filter: 'Todas', mode: 'perspectiva', touring: false, vw: window.innerWidth };
+  stageRef = React.createRef();
+  W = [];
+  centers = { ...Component.CENTERS };
+
+  static INTERP = {};
+  static CACHE = null;
+  static LOCAL_INTERP = {"rad-01":["Un radiolario escalado a arquitectura: la cúpula perforada se instala como pabellón habitable en una sala.",["Arquitectura","Diseño"],["Ernst Haeckel — Kunstformen der Natur","Buckminster Fuller — cúpula geodésica","Frei Otto — estructuras ligeras"]],"rad-02":["Lámina de catálogo con esqueletos silíceos ordenados por simetría: la taxonomía como composición gráfica.",["Arte","Diseño"],["Ernst Haeckel — Kunstformen der Natur (láminas)","D’Arcy Thompson — On Growth and Form"]],"rad-03":["Cuatro variaciones de la simetría radial, de la estrella espinosa al panal hexagonal.",["Diseño","Arte"],["Ernst Haeckel — Kunstformen der Natur","D’Arcy Thompson — On Growth and Form"]],"rad-04":["Un esqueleto radiolario leído como sistema estructural de puntales y anillos.",["Arquitectura"],["Buckminster Fuller — tensegridad","Kenneth Snelson — esculturas de tensegridad"]],"rad-07":["Colonia de diatomeas sobre campo oscuro: geometrías triangulares, circulares y estrelladas en un solo conjunto.",["Arte","Diseño"],["Ernst Haeckel — Kunstformen der Natur","Láminas victorianas de diatomeas (Klaus Kemp)"]],"rad-08":["Envolvente ovoide de celdas regulares: una piel reticulada que funciona como fachada.",["Arquitectura","Diseño"],["Nicholas Grimshaw — Eden Project","Herzog & de Meuron — Estadio Nacional de Pekín"]],"rad-10":["Esfera de poros con espinas radiales: el modelo natural de la cúpula geodésica.",["Arquitectura"],["Buckminster Fuller — Biosphère de Montreal","Ernst Haeckel — Aulonia hexagona"]],"rad-11":["Dos valvas de diatomea, una cerrada y otra abierta: la forma como mecanismo.",["Diseño"],["Ernst Haeckel — Kunstformen der Natur","Karl Blossfeldt — Urformen der Kunst"]],"rad-12":["Frústulo cilíndrico con corona de dientes: un tambor estructural de nervaduras.",["Arquitectura","Diseño"],["Pier Luigi Nervi — nervaduras de hormigón","Félix Candela — cascarones"]],"rad-13":["Anillos superpuestos como celosía: la forma natural leída como torre apilada.",["Arquitectura"],["Shigeru Ban — estructuras de tubos","Vladímir Shújov — torre de Shábolovka"]],"rad-14":["Placa nervada con perforaciones regulares, entre losa de hormigón y pieza de joyería.",["Arquitectura","Diseño"],["Pier Luigi Nervi — Palazzetto dello Sport","Karl Blossfeldt — Urformen der Kunst"]],"rad-16":["Esqueleto de espinas radiales: una estructura de puntales que irradia desde un núcleo.",["Arquitectura","Arte"],["Kenneth Snelson — Needle Tower","Ernst Haeckel — Acantharia"]],"rad-17":["Lámina de simetrías: la morfología natural ordenada como un sistema de diseño.",["Diseño","Arte"],["Ernst Haeckel — Kunstformen der Natur","D’Arcy Thompson — On Growth and Form"]],"rad-18":["Muro ondulado de diatomea: una superficie sinuosa que anticipa la arquitectura orgánica.",["Arquitectura"],["Antoni Gaudí — muros ondulados","Frank Gehry — superficies continuas","Eladio Dieste — muros gausos"]]};
+  static WORKS = [
+    { img: 'rad-01', title: 'Esfera en sala', sub: 'Cúpulas perforadas', forma: 'Esférica', color: 'Azul', tecnica: 'Instalación', rel: [6, 5], desc: 'El radiolario escalado a arquitectura: una cúpula perforada suspendida sobre un suelo espejo, recorrida por visitantes.' },
+    { img: 'rad-02', title: 'Atlas radial', sub: 'Láminas taxonómicas', forma: 'Colonial', color: 'Ámbar', tecnica: 'Composición', rel: [2, 4], desc: 'Catálogo de esqueletos silíceos dispuestos como lámina de taxonomía: espinas, cámaras y simetrías en serie.' },
+    { img: 'rad-03', title: 'Cuatro simetrías', sub: 'Láminas de simetría', forma: 'Radial', color: 'Ámbar', tecnica: 'Composición', rel: [1, 3, 6], desc: 'Cuatro variaciones de la simetría radial, de la estrella espinosa al panal hexagonal.' },
+    { img: 'rad-04', title: 'Rueda de sílice', sub: 'Ruedas y valvas', forma: 'Radial', color: 'Ámbar', tecnica: 'Microscopía', rel: [2, 7], desc: 'Diatomea céntrica con seis radios: una planta de edificio dibujada por la célula.' },
+    { img: 'rad-07', title: 'Colonia de diatomeas', sub: 'Campo oscuro', forma: 'Colonial', color: 'Policromo', tecnica: 'Microscopía', rel: [1, 11], desc: 'Conjunto de frústulos triangulares, circulares y alargados en campo oscuro: diversidad formal en una sola gota.' },
+    { img: 'rad-08', title: 'Cápsula reticulada', sub: 'Pieles reticuladas', forma: 'Esférica', color: 'Verde', tecnica: 'Render 3D', rel: [7, 8, 0], desc: 'Envolvente ovoide de celdas regulares, leída como fachada de piel continua.' },
+    { img: 'rad-10', title: 'Esfera espinosa', sub: 'Cúpulas perforadas', forma: 'Esférica', color: 'Azul', tecnica: 'Render 3D', rel: [0, 2], desc: 'Malla de poros circulares y espinas radiales: estructura ligera de máxima resistencia.' },
+    { img: 'rad-11', title: 'Valvas gemelas', sub: 'Ruedas y valvas', forma: 'Radial', color: 'Verde', tecnica: 'Render 3D', rel: [3, 5], desc: 'Dos valvas de diatomea, una cerrada y otra abierta en estrella, como cubiertas desplegables.' },
+    { img: 'rad-12', title: 'Tambor estriado', sub: 'Tambores dentados', forma: 'Cilíndrica', color: 'Ámbar', tecnica: 'Render 3D', rel: [9, 10], desc: 'Frústulo cilíndrico con corona de dientes: el pabellón circular como organismo.' },
+    { img: 'rad-13', title: 'Frústulo y cúpula', sub: 'Tambores dentados', forma: 'Cilíndrica', color: 'Policromo', tecnica: 'Render 3D', rel: [8, 10], desc: 'Un tambor bandeado frente a una cúpula porosa: dos tipologías de una misma especie.' },
+    { img: 'rad-14', title: 'Cilindros porosos', sub: 'Celosías apiladas', forma: 'Cilíndrica', color: 'Policromo', tecnica: 'Render 3D', rel: [9, 13], desc: 'Torres de celdas apiladas cuya perforación filtra la luz como una celosía.' },
+    { img: 'rad-16', title: 'Estrella pentagonal', sub: 'Placas nervadas', forma: 'Estrellada', color: 'Policromo', tecnica: 'Render 3D', rel: [4, 12, 13], desc: 'Placa de cinco puntas con red de nervaduras: planta estrellada de bordes ondulantes.' },
+    { img: 'rad-17', title: 'Arquitectura espinal', sub: 'Puntales espinales', forma: 'Estrellada', color: 'Verde', tecnica: 'Render 3D', rel: [11, 5], desc: 'Puntales y espinas que unen cámaras: un sistema estructural de tensión y apoyo.' },
+    { img: 'rad-18', title: 'Muro ondulado', sub: 'Muros sinuosos', forma: 'Cilíndrica', color: 'Policromo', tecnica: 'Render 3D', rel: [10, 11], desc: 'Frústulo alargado y sinuoso con cresta de espinas: un muro vivo de curvatura continua.' }
+  ].map((w, i) => {
+    const sub = i === 0 ? 'Instalación' : w.sub;
+    const forma = { 'Instalación': 'Diseño', 'Muros sinuosos': 'Diseño', 'Cúpulas perforadas': 'Forma', 'Tambores dentados': 'Forma', 'Ruedas y valvas': 'Forma', 'Pieles reticuladas': 'Estructura', 'Celosías apiladas': 'Estructura', 'Placas nervadas': 'Estructura', 'Puntales espinales': 'Estructura', 'Láminas taxonómicas': 'Idea', 'Láminas de simetría': 'Idea', 'Campo oscuro': 'Idea' }[sub] || 'Forma';
+    const li = Component.LOCAL_INTERP && Component.LOCAL_INTERP[w.img];
+    return { ...w, forma, sub, tags: [w.forma, w.color, w.tecnica], ...(li ? { interp: li[0], temas: li[1], refs: li[2] } : {}), id: i, code: 'MG-' + String(i + 1).padStart(2, '0'), img: (window.__resources && window.__resources['m_' + w.img.replace(/-/g, '_')]) || 'assets/morfo/' + w.img + '.jpg' };
+  });
+
+  static CURATED = {};
+  static ORDER = ['Forma', 'Estructura', 'Diseño', 'Idea'];
+  static FLICKR = { key: '5b1156c65a3a2e82ab0586d1bd0791c3', fallbackKey: 'c1db0c667b178b973ae56c70878c3d90', user: '96723092@N08', accounts: [
+    { nsid: '193399231@N08', name: 'Roberto Real de León' },
+    { nsid: '30735181@N00', name: 'Arquepoética', alias: 'arquepoetica' },
+    { nsid: '96723092@N08', name: 'Visualística' }
+  ] };
+  static OWNER = {};
+  static CENTERS = {};
+
+  componentDidMount() { window.__noof = this; this.onFs = () => this.setState({ fs: !!document.fullscreenElement }); document.addEventListener('fullscreenchange', this.onFs); this.onResize = () => this.setState({ vw: window.innerWidth }); window.addEventListener('resize', this.onResize); this.onKey = e => { if (!this.state.viewer) return; if (e.key === 'Escape') this.closeViewer(); else if (e.key === 'ArrowRight') this.viewerStep(1); else if (e.key === 'ArrowLeft') this.viewerStep(-1); else if (e.key === 'i' || e.key === 'I') this.setState(s => ({ viewerHide: !s.viewerHide })); }; window.addEventListener('keydown', this.onKey); this.setup(); this.loadCache().then(() => this.loadAlbums()); }
+  async loadCache() {
+    try {
+      const j = await fetch((window.__resources && window.__resources.interp_json) || './interpretaciones.json', { cache: 'no-store' }).then(r => r.json());
+      if (j.grupos) { const F = {}; for (const id in j.fotos) { const p = j.fotos[id], g = j.grupos[p.g] || []; F[id] = { forma: g[0], sub: g[1], tags: g[2], titulo: p.t, interp: g[3], temas: g[4], refs: g[5], album: p.a[0], albums: p.a }; } j.fotos = F; delete j.grupos; }
+      Component.CACHE = j;
+      for (const id in j.fotos) { const f = j.fotos[id]; if (f.forma) Component.CURATED[id] = [f.forma, f.sub, f.tags || [], f.titulo]; if (f.interp) Component.INTERP[id] = [f.interp, f.temas || [], f.refs || []]; }
+    } catch (e) { Component.CACHE = { albumes: {}, fotos: {} }; }
+  }
+  exportCache() {
+    const base = Component.CACHE || { version: 1, albumes: {}, fotos: {} };
+    let auto = {}; try { auto = JSON.parse(localStorage.getItem('nfr-auto-v1') || '{}'); } catch (e) {}
+    const all = { ...auto, ...base.fotos }, gi = {}, grupos = [], fotos = {};
+    for (const id in all) { const f = all[id]; const g = [f.forma, f.sub, f.tags || [], f.interp || '', f.temas || [], f.refs || []]; const k = JSON.stringify(g); if (!(k in gi)) { gi[k] = grupos.length; grupos.push(g); } fotos[id] = { g: gi[k], t: f.titulo, a: f.albums && f.albums.length ? f.albums : [f.album] }; }
+    const out = { version: 2, actualizado: new Date().toISOString().slice(0, 10), nota: base.nota, albumes: base.albumes, grupos, fotos };
+    const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(out, null, 1)], { type: 'application/json' })); a.download = 'interpretaciones.json'; a.click();
+  }
+
+  flickr(method, params, key) {
+    const k = key || Component.FLICKR.key;
+    const p = new URLSearchParams({ api_key: k, format: 'json', nojsoncallback: '1', method, ...params });
+    return fetch('https://api.flickr.com/services/rest/?' + p).then(r => r.json()).then(d => { if (d.stat !== 'ok') throw new Error(d.message); return d; })
+      .catch(e => { if (!key && Component.FLICKR.fallbackKey && k !== Component.FLICKR.fallbackKey) return this.flickr(method, params, Component.FLICKR.fallbackKey); throw e; });
+  }
+  async listAccount(acc) {
+    const out = []; let page = 1, pages = 1;
+    do {
+      const d = await this.flickr('flickr.photosets.getList', { user_id: acc.nsid, per_page: 500, page, primary_photo_extras: 'url_q' });
+      pages = +d.photosets.pages || 1;
+      d.photosets.photoset.forEach(a => { Component.OWNER[a.id] = acc.nsid; out.push({ id: a.id, owner: acc.nsid, account: acc.name, title: a.title._content || 'Sin título', count: +a.photos + +(a.videos || 0), thumb: (a.primary_photo_extras && a.primary_photo_extras.url_q) || '' }); });
+      page++;
+    } while (page <= pages);
+    return out;
+  }
+  async loadAlbums() {
+    try {
+      const res = await Promise.allSettled(Component.FLICKR.accounts.map(acc => this.listAccount(acc)));
+      const albums = res.flatMap(r => r.status === 'fulfilled' ? r.value : []);
+      if (!albums.length) throw new Error('sin álbumes');
+      for (let i = albums.length - 1; i > 0; i--) { const r = Math.floor(Math.random() * (i + 1)); [albums[i], albums[r]] = [albums[r], albums[i]]; }
+      this.setState({ albums, flickrErr: null });
+      const ca = (Component.CACHE && Component.CACHE.albumes) || {};
+      const pool = albums.filter(a => ca[a.id] && ca[a.id].revisado && a.count > 0);
+      const list = pool.length ? pool : albums.filter(a => a.count > 0);
+      const m = list[Math.floor(Math.random() * list.length)];
+      if (m) await this.loadAlbum(m.id);
+      this.setState({ booted: true });
+    } catch (e) { this.setState({ flickrErr: 'No se pudo conectar con Flickr', booted: true }); }
+  }
+  async fetchAlbum(id) {
+    this.cache = this.cache || {};
+    if (this.cache[id]) return this.cache[id];
+    if (id === 'local') return (this.cache.local = []);
+    const q = { photoset_id: id, user_id: Component.OWNER[id] || Component.FLICKR.user, extras: 'url_q,url_m,url_l,url_z,tags,description', per_page: 500 };
+    const d = await this.flickr('flickr.photosets.getPhotos', { ...q, page: 1 });
+    const pages = +d.photoset.pages || 1;
+    if (pages > 1) { const more = await Promise.all(Array.from({ length: pages - 1 }, (_, k) => this.flickr('flickr.photosets.getPhotos', { ...q, page: k + 2 }).catch(() => null))); more.forEach(m => { if (m && m.photoset) d.photoset.photo.push(...m.photoset.photo); }); }
+    const W = Component.fromFlickr(d.photoset.photo, d.photoset.title, d.photoset.owner || Component.OWNER[id]);
+    if (!d.photoset.photo.some(p => Component.CURATED[p.id])) await this.analyze(W, d.photoset.photo, id);
+    W.forEach(w => { w.album = d.photoset.title; w.code = (w.code || '').replace(/^FL/, 'FL'); });
+    return (this.cache[id] = W);
+  }
+  async loadAlbum(id) {
+    if (!id || (this.state.active.length === 1 && this.state.active[0] === id)) return;
+    this.stopTour(); this.setState({ loading: id !== 'local', progress: null, flickrErr: null, sel: null, filter: 'Todas', subFilter: 'Todas' });
+    try {
+      if (id !== 'local') await this.fetchAlbum(id);
+      this.setState({ active: [id] }, () => this.combine());
+    } catch (e) { this.setState({ loading: false, flickrErr: 'No se pudo cargar el álbum' }); }
+  }
+  removeAlbum(id) {
+    if (this.state.active.length <= 1) return;
+    this.stopTour(); this.setState({ active: this.state.active.filter(a => a !== id) }, () => this.combine());
+  }
+  combine() {
+    const W = [], ranges = [];
+    this.state.active.forEach(aid => {
+      this.cache = this.cache || {};
+      if (aid === 'local' && !this.cache.local) this.cache.local = [];
+      const src = this.cache[aid] || [], off = W.length;
+      ranges.push([off, off + src.length]);
+      src.forEach((w, k) => W.push({ ...w, id: off + k, albumId: aid, rel: (w.rel || []).map(j => j + off) }));
+    });
+    if (ranges.length > 1) {
+      const toks = W.map(w => new Set([w.forma, w.sub, ...(w.tags || [])]));
+      W.forEach((w, i) => {
+        const sc = [];
+        W.forEach((o, j) => {
+          if (o.albumId === w.albumId) return;
+          let k = (o.forma === w.forma ? 2 : 0) + (o.sub === w.sub ? 3 : 0);
+          toks[i].forEach(t => { if (t !== w.forma && t !== w.sub && toks[j].has(t)) k += 1; });
+          if (k >= 3) sc.push({ j, k });
+        });
+        sc.sort((a, b) => b.k - a.k);
+        w.cross = sc.slice(0, 2).map(x => x.j);
+        w.rel = [...w.rel, ...w.cross];
+      });
+    }
+    this.applyWorks(W, {}, this.state.active.join('+'));
+  }
+  async analyze(W, photos, albumId) {
+    const ck = 'nfr-feat-v1-' + albumId;
+    let feats = null;
+    try { feats = JSON.parse(localStorage.getItem(ck) || 'null'); } catch (e) {}
+    if (!feats || feats.length !== W.length) {
+      let done = 0;
+      const cv = document.createElement('canvas'); cv.width = cv.height = 32; const cx = cv.getContext('2d', { willReadFrequently: true });
+      const one = p => new Promise(res => {
+        const im = new Image(); im.crossOrigin = 'anonymous';
+        im.onload = () => { try { cx.drawImage(im, 0, 0, 32, 32); res(Component.features(cx.getImageData(0, 0, 32, 32).data, (+p.width_m || 1) / (+p.height_m || 1))); } catch (e) { res(null); } this.setState({ progress: ++done + '/' + W.length }); };
+        im.onerror = () => { res(null); this.setState({ progress: ++done + '/' + W.length }); };
+        im.src = p.url_q || p.url_m;
+      });
+      feats = [];
+      for (let i = 0; i < photos.length; i += 12) feats.push(...await Promise.all(photos.slice(i, i + 12).map(one)));
+      try { localStorage.setItem(ck, JSON.stringify(feats)); } catch (e) {}
+    }
+    Component.classify(W, feats);
+    try { const auto = JSON.parse(localStorage.getItem('nfr-auto-v1') || '{}'); photos.forEach((p, i) => { const w = W[i]; auto[p.id] = { forma: w.forma, sub: w.sub, tags: w.tags, titulo: w.title, fuente: 'auto', album: albumId }; }); localStorage.setItem('nfr-auto-v1', JSON.stringify(auto)); } catch (e) {}
+  }
+  static features(d, ar) {
+    let sl = 0, sl2 = 0, ss = 0, col = 0, edge = 0; const hb = new Array(12).fill(0), L = [];
+    for (let i = 0; i < d.length; i += 4) {
+      const r = d[i] / 255, g = d[i + 1] / 255, b = d[i + 2] / 255, mx = Math.max(r, g, b), mn = Math.min(r, g, b), l = 0.299 * r + 0.587 * g + 0.114 * b, sat = mx ? (mx - mn) / mx : 0;
+      L.push(l); sl += l; sl2 += l * l; ss += sat;
+      if (sat > 0.25 && mx > 0.15) { col++; let h = 0, dd = mx - mn; h = mx === r ? ((g - b) / dd) % 6 : mx === g ? (b - r) / dd + 2 : (r - g) / dd + 4; h = (h * 60 + 360) % 360; hb[Math.floor(h / 30) % 12] += sat; }
+    }
+    for (let y = 0; y < 32; y++) for (let x = 0; x < 31; x++) edge += Math.abs(L[y * 32 + x] - L[y * 32 + x + 1]) + (y < 31 ? Math.abs(L[y * 32 + x] - L[(y + 1) * 32 + x]) : 0);
+    const n = L.length, m = sl / n;
+    return { l: m, c: Math.sqrt(Math.max(0, sl2 / n - m * m)), s: ss / n, col: col / n, hue: hb.indexOf(Math.max(...hb)) * 30 + 15, e: edge / n, ar };
+  }
+  static hueName(h) { return h < 20 || h >= 330 ? 'Rojo' : h < 45 ? 'Ámbar' : h < 70 ? 'Amarillo' : h < 160 ? 'Verde' : h < 200 ? 'Turquesa' : h < 260 ? 'Azul' : h < 300 ? 'Violeta' : 'Magenta'; }
+  static classify(W, F) {
+    const ok = F.filter(Boolean), med = k => { const a = ok.map(f => f[k]).sort((x, y) => x - y); return a[Math.floor(a.length / 2)] || 0; };
+    const mE = med('e'), mC = med('c');
+    W.forEach((w, i) => {
+      const f = F[i]; if (!f) { w.forma = 'Sin analizar'; w.sub = 'General'; w.tags = []; return; }
+      const mono = f.col < 0.12, hn = Component.hueName(f.hue), warm = ['Rojo', 'Ámbar', 'Amarillo', 'Magenta'].includes(hn);
+      const light = f.l > 0.62 ? 'Luminosa' : f.l < 0.3 ? 'Oscura' : 'Media luz';
+      const tex = f.e > mE ? 'Detalle fino' : 'Superficie lisa', con = f.c > mC ? 'Alto contraste' : 'Contraste suave';
+      const ori = f.ar > 1.15 ? 'Horizontal' : f.ar < 0.87 ? 'Vertical' : 'Cuadrada';
+      const tone = mono ? (f.l > 0.55 ? 'Monocromo claro' : 'Monocromo oscuro') : (warm ? 'Color cálido' : 'Color frío');
+      if (mono && f.l > 0.6 && f.e > mE * 0.6 && f.c < 0.3) { w.forma = 'Idea'; w.sub = f.e > mE ? 'Boceto lineal' : 'Trazo suave'; }
+      else if (f.e > mE * 1.15) { w.forma = 'Estructura'; w.sub = mono ? 'Retícula monocroma' : 'Patrón'; }
+      else if (!mono && f.col > 0.3) { w.forma = 'Diseño'; w.sub = 'Composición ' + hn.toLowerCase(); }
+      else { w.forma = 'Forma'; w.sub = mono ? (f.l > 0.5 ? 'Volumen claro' : 'Volumen en penumbra') : 'Volumen en color'; }
+      w.tags = [tone, light, con, ori, ...(mono ? ['Blanco y negro'] : [hn])].filter(t => t !== w.forma && t !== w.sub);
+      w.desc = (w.desc ? w.desc + ' · ' : '') + 'Archivo original: ' + w.title;
+      w.title = w.sub;
+      w.code = 'FL-' + String(i + 1).padStart(2, '0');
+    });
+    const vec = f => f ? [f.l * 2, f.c * 3, f.col * 2, f.e / (mE || 1), f.col > 0.12 ? Math.cos(f.hue * Math.PI / 180) : 0, f.col > 0.12 ? Math.sin(f.hue * Math.PI / 180) : 0] : null;
+    const V = F.map(vec);
+    W.forEach((w, i) => {
+      const seq = [i + 1].filter(j => j < W.length);
+      const nn = V[i] ? V.map((v, j) => ({ j, d: v && j !== i && !seq.includes(j) ? v.reduce((a, x, k) => a + (x - V[i][k]) ** 2, 0) : Infinity })).sort((a, b) => a.d - b.d).slice(0, 3).filter(x => isFinite(x.d)).map(x => x.j) : [];
+      w.rel = [...seq, ...nn];
+    });
+  }
+  applyWorks(W, centers, src) {
+    this.W = W; this.centers = centers; this.state.sel = null;
+    this.build();
+    this.pz = -900; this.pzT = -900; this.cruise = 0.01; if (this.tgt) { this.tgt.ry = Math.round(this.tgt.ry / (Math.PI * 2)) * Math.PI * 2 + 0.033; this.tgt.rx = 0.027; this.tgt.d = 720; }
+    this.setState({ sel: null, filter: 'Todas', subFilter: 'Todas', q: '', src, loading: false });
+  }
+  static fromFlickr(photos, albumTitle, owner) {
+    const cap = t => t.charAt(0).toUpperCase() + t.slice(1);
+    const tagsOf = photos.map(p => (p.tags || '').split(' ').filter(Boolean));
+    const freq = {}; tagsOf.forEach(ts => ts.forEach(t => freq[t] = (freq[t] || 0) + 1));
+    const common = Object.keys(freq).filter(t => freq[t] >= 2 && freq[t] < photos.length).sort((a, b) => freq[b] - freq[a]);
+    const top = common.slice(0, 6);
+    const W = photos.map((p, i) => {
+      const ts = tagsOf[i], f = top.find(t => ts.includes(t)), sub = common.find(t => t !== f && ts.includes(t) && !top.includes(t)) || common.find(t => t !== f && ts.includes(t));
+      return {
+        id: i, code: 'FL-' + String(i + 1).padStart(2, '0'), title: p.title || 'Sin título',
+        img: p.url_m || p.url_z || ('https://live.staticflickr.com/' + p.server + '/' + p.id + '_' + p.secret + '_m.jpg'),
+        imgL: p.url_l || p.url_z || p.url_m,
+        forma: f ? cap(f) : (top.length ? 'Otras' : 'Serie ' + String.fromCharCode(65 + Math.floor(i / 12))),
+        sub: sub ? cap(sub) : (top.length ? 'General' : 'Grupo ' + (Math.floor(i / 4) + 1)),
+        color: '', tecnica: '', tags: ts.map(cap),
+        desc: ((p.description && p.description._content) || '').replace(/<[^>]*>/g, '').trim() || albumTitle,
+        url: 'https://www.flickr.com/photos/' + (owner || Component.FLICKR.user) + '/' + p.id,
+        ...(Component.INTERP[p.id] ? { interp: Component.INTERP[p.id][0], temas: Component.INTERP[p.id][1], refs: Component.INTERP[p.id][2] } : {})
+      };
+    });
+    if (photos.some(p => Component.CURATED[p.id])) {
+      photos.forEach((p, i) => { const c = Component.CURATED[p.id]; if (c) { W[i].forma = c[0]; W[i].sub = c[1]; W[i].tags = c[2]; if (c[3]) { W[i].title = c[3]; W[i].code = 'IM-' + String(i + 1).padStart(2, '0'); } } tagsOf[i] = [W[i].forma, W[i].sub, ...W[i].tags]; });
+      const fq = {}; tagsOf.forEach(ts => ts.forEach(t => fq[t] = (fq[t] || 0) + 1));
+      W.forEach((w, i) => {
+        const seq = [i - 1, i + 1].filter(j => j >= 0 && j < W.length);
+        const sc = W.map((o, j) => ({ j, k: seq.includes(j) || j === i ? -1 : tagsOf[i].filter(t => tagsOf[j].includes(t)).reduce((a, t) => a + 1 / fq[t], 0) })).filter(x => x.k > 0).sort((a, b) => b.k - a.k).slice(0, 2).map(x => x.j);
+        w.rel = [...seq, ...sc];
+      });
+      return W;
+    }
+    W.forEach((w, i) => {
+      const scored = W.map((o, j) => ({ j, k: j === i ? -1 : tagsOf[i].filter(t => tagsOf[j].includes(t) && freq[t] < photos.length).length })).filter(x => x.k > 0).sort((a, b) => b.k - a.k).slice(0, 3).map(x => x.j);
+      w.rel = scored.length ? scored : [(i + 1) % W.length].filter(j => j !== i);
+    });
+    return W;
+  }
+  componentWillUnmount() {
+    cancelAnimationFrame(this.raf); clearInterval(this.tourT); window.removeEventListener('resize', this.onResize); window.removeEventListener('keydown', this.onKey); document.removeEventListener('fullscreenchange', this.onFs);
+    if (this.ro) this.ro.disconnect();
+  }
+
+  setup() {
+    const W = this.W, n = W.length, R = 330;
+    const stage = this.stageRef.current; if (!stage) return;
+    const cs = getComputedStyle(document.documentElement);
+    const hex = v => { const h = (cs.getPropertyValue(v).trim() || '#999999').replace('#', ''); return [0, 2, 4].map(k => parseInt(h.slice(k, k + 2), 16)); };
+    this.cAccent = hex('--color-accent'); this.cText = hex('--color-text'); this.cNeutral = hex('--color-neutral-400');
+    let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    this.dust = Array.from({ length: 260 }, () => { const u = rnd() * 2 - 1, t = rnd() * Math.PI * 2, r = 380 + rnd() * 700, s = Math.sqrt(1 - u * u); return [Math.cos(t) * s * r, u * r, Math.sin(t) * s * r, rnd()]; });
+    const canvas = document.createElement('canvas');
+    canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none';
+    stage.appendChild(canvas); this.canvas = canvas; this.ctx = canvas.getContext('2d');
+    this.build();
+    this.cam = { ry: 0.033, rx: 0.027, d: 720 }; this.tgt = { ...this.cam };
+    this.t = 0; this.cx = null;
+    this.bindStage(stage);
+  }
+
+  build() {
+    const W = this.W, n = W.length, R = 330, stage = this.stageRef.current;
+    (this.nodes || []).forEach(nd => nd.el.remove()); (this.subs || []).forEach(g => g.lb && g.lb.remove()); this.hover = null;
+    const fl = Object.keys(this.centers);
+    if (!fl.length || W.some(w => !this.centers[w.forma])) {
+      const names = [...new Set(W.map(w => w.forma))].sort((a, b) => { const o = Component.ORDER, ia = o.indexOf(a), ib = o.indexOf(b); return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib); });
+      this.centers = {};
+      names.forEach((nm, i) => { const y = names.length > 1 ? 1 - (i / (names.length - 1)) * 2 : 0, r = Math.sqrt(1 - y * y), th = i * 2.39996; this.centers[nm] = [Math.cos(th) * r * 240, y * 190, Math.sin(th) * r * 240]; });
+    }
+
+    const groups = {};
+    W.forEach(w => { const g = groups[w.forma] = groups[w.forma] || {}; (g[w.sub] = g[w.sub] || []).push(w.id); });
+    this.cld = []; this.subs = [];
+    Object.entries(groups).forEach(([forma, g]) => {
+      const c = this.centers[forma], names = Object.keys(g);
+      names.forEach((name, si) => {
+        const a = si / names.length * Math.PI * 2 + c[0] * 0.01, sr = names.length > 1 ? 170 : 0;
+        const sc = [c[0] + Math.cos(a) * sr, c[1] + Math.sin(a) * sr * 0.6, c[2] + Math.sin(a) * sr];
+        const ids = g[name];
+        ids.forEach((id, mi) => {
+          const b = mi / ids.length * Math.PI * 2 + 0.7, mr = ids.length > 1 ? 58 : 0;
+          this.cld[id] = [sc[0] + Math.cos(b) * mr, sc[1] + Math.sin(b) * mr * 0.8, sc[2] + Math.sin(b) * mr];
+        });
+        this.subs.push({ name, forma, ids });
+      });
+    });
+    const ord = W.map(w => w.id).sort((a, b) => { const o = Component.ORDER, fa = o.indexOf(W[a].forma), fb = o.indexOf(W[b].forma); return ((fa < 0 ? 99 : fa) - (fb < 0 ? 99 : fb)) || W[a].forma.localeCompare(W[b].forma) || W[a].sub.localeCompare(W[b].sub) || a - b; });
+    this.psp = []; let z = 20;
+    const secs = []; ord.forEach(id => { const l = secs[secs.length - 1]; if (l && l.f === W[id].forma) l.ids.push(id); else secs.push({ f: W[id].forma, ids: [id] }); });
+    for (let i = ord.length - 1; i > 0; i--) { const r = Math.floor(Math.random() * (i + 1)); [ord[i], ord[r]] = [ord[r], ord[i]]; }
+    ord.forEach((id, k) => { this.psp[id] = [k % 2 ? 126 : -126, 0, z]; if (k % 2) z -= 150; else z -= 0; });
+    if (ord.length % 2) z -= 150;
+    this.pspLen = Math.max(0, 20 - z - 200); this.pz = this.pz || 0; this.pzT = Math.min(this.pzT || 0, this.pspLen);
+    this.sph = this.cld.map(p => { const l = Math.hypot(p[0], p[1], p[2]) || 1; return [p[0] / l * R, p[1] / l * R, p[2] / l * R]; });
+
+    const key = (a, b) => a < b ? a + '-' + b : b + '-' + a;
+    const direct = new Map();
+    W.forEach(w => w.rel.forEach(j => direct.set(key(w.id, j), [Math.min(w.id, j), Math.max(w.id, j)])));
+    this.adj = W.map(() => new Set());
+    direct.forEach(([a, b]) => { this.adj[a].add(b); this.adj[b].add(a); });
+    this.why = {};
+    const indirect = new Map();
+    for (let a = 0; a < n; a++) for (let b = a + 1; b < n; b++) {
+      const k = key(a, b); if (direct.has(k)) continue;
+      const via = [...this.adj[a]].find(x => this.adj[b].has(x));
+      const shared = ['forma', 'sub', 'color', 'tecnica'].filter(f => W[a][f] && W[a][f] === W[b][f]);
+      if (via !== undefined || shared.length >= 2) {
+        indirect.set(k, [a, b]);
+        this.why[k] = via !== undefined ? 'Vía ' + W[via].title : 'Comparte ' + shared.map(s => ({ forma: 'forma', color: 'color', tecnica: 'técnica' })[s]).join(' y ');
+      }
+    }
+    this.edges = [...[...direct.values()].map(e => ({ a: e[0], b: e[1], d: true })), ...[...indirect.values()].map(e => ({ a: e[0], b: e[1], d: false }))];
+    this.indirectOf = id => this.edges.filter(e => !e.d && (e.a === id || e.b === id)).map(e => { const o = e.a === id ? e.b : e.a; return { id: o, why: this.why[key(e.a, e.b)] }; });
+
+    this.nodes = W.map(w => {
+      const el = document.createElement('div');
+      el.dataset.node = w.id;
+      el.className = 'lighten';
+      el.style.cssText = 'position:absolute;left:0;top:0;width:150px;height:150px;transform-origin:50% 50%;will-change:transform,opacity;cursor:pointer';
+      const box = document.createElement('div');
+            box.style.cssText = 'width:100%;height:100%;display:flex;align-items:center;justify-content:center;transition:box-shadow .3s';
+      const img = document.createElement('img');
+      img.src = w.img; img.alt = w.title; img.draggable = false;
+      const fade = 'linear-gradient(to right,transparent,#000 14%,#000 86%,transparent),linear-gradient(to bottom,transparent,#000 14%,#000 86%,transparent)';
+      img.style.cssText = 'max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:block;pointer-events:none;mask-image:' + fade + ';-webkit-mask-image:' + fade + ';mask-composite:intersect;-webkit-mask-composite:source-in';
+      box.appendChild(img);
+      const cap = document.createElement('div');
+      cap.style.cssText = 'position:absolute;left:50%;translate:-50% 0;top:calc(100% + 8px);white-space:nowrap;font-size:13px;color:var(--color-text);opacity:0;transition:opacity .25s;pointer-events:none;display:flex;gap:8px;align-items:baseline';
+      cap.textContent = w.title;
+      const zb = document.createElement('button');
+      zb.innerHTML = '<i class="ph ph-arrows-out" style="font-size:16px"></i>';
+      zb.setAttribute('aria-label', 'Ver a pantalla completa'); zb.title = 'Ver a pantalla completa';
+      zb.style.cssText = 'position:absolute;right:6px;top:6px;width:30px;height:30px;display:flex;align-items:center;justify-content:center;border-radius:999px;border:1px solid rgba(255,255,255,.35);background:rgba(0,0,0,.6);color:#fff;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .3s;transform-origin:100% 0';
+      zb.addEventListener('pointerdown', e => e.stopPropagation());
+      zb.addEventListener('click', e => { e.stopPropagation(); this.openViewer(w.id); });
+      el.appendChild(box); el.appendChild(cap); el.appendChild(zb);
+      el.addEventListener('pointerenter', () => { if (this.hover !== w.id) this.hoverAt = performance.now(); this.hover = w.id; });
+      el.addEventListener('pointerleave', () => { if (this.hover === w.id) this.hover = null; });
+      stage.appendChild(el);
+      return { el, box, cap, zb };
+    });
+
+    this.subs.forEach(g => {
+      const lb = document.createElement('div');
+      lb.textContent = g.name;
+      lb.style.cssText = 'position:absolute;left:0;top:0;z-index:2500;pointer-events:none;white-space:nowrap;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color: var(--t-1);padding:2px 8px;border-radius:999px;background:rgba(0,0,0,.72);transition:opacity .3s;opacity:0';
+      stage.appendChild(lb); g.lb = lb;
+    });
+  }
+
+  bindStage(stage) {
+    let down = null;
+    stage.addEventListener('pointerdown', e => {
+      down = { x: e.clientX, y: e.clientY, lx: e.clientX, ly: e.clientY, moved: false, node: e.target.closest('[data-node]') };
+      stage.setPointerCapture(e.pointerId); stage.style.cursor = 'grabbing';
+    });
+    stage.addEventListener('pointermove', e => {
+      if (!down) return;
+      if (Math.hypot(e.clientX - down.x, e.clientY - down.y) > 4) { if (!down.moved) this.stopTour(); down.moved = true; }
+      if (down.moved) {
+        this.tgt.ry += (e.clientX - down.lx) * 0.005;
+        this.tgt.rx = Math.max(-1.3, Math.min(1.3, this.tgt.rx - (e.clientY - down.ly) * 0.005));
+        this.cam.ry = this.tgt.ry; this.cam.rx = this.tgt.rx;
+      }
+      down.lx = e.clientX; down.ly = e.clientY;
+    });
+    stage.addEventListener('pointerup', () => {
+      stage.style.cursor = 'grab';
+      if (down && !down.moved) {
+        this.stopTour();
+        if (down.node) {
+          const id = +down.node.dataset.node, now = performance.now();
+          if (this.lastTap && this.lastTap.id === id && now - this.lastTap.t < 400) { this.lastTap = null; this.select(id); this.openViewer(id); }
+          else { this.lastTap = { id, t: now }; this.select(id); }
+        } else if (this.state.sel !== null) this.close();
+      }
+      down = null;
+    });
+    stage.addEventListener('wheel', e => { e.preventDefault(); if (this.state.mode === 'perspectiva') { this.stopTour(); this.cruise = 0; this.pzT = Math.max(0, Math.min(this.pspLen || 0, (this.pzT || 0) + e.deltaY * 0.9)); return; } this.tgt.d = Math.max(320, Math.min(1800, this.tgt.d * (1 + e.deltaY * 0.001))); }, { passive: false });
+    this.dragging = () => down && down.moved;
+
+    const loop = () => { try { this.frame(); } catch (e) { if (!this.errLogged) { console.error('frame', e); this.errLogged = true; } } this.raf = requestAnimationFrame(loop); };
+    loop();
+  }
+
+  matches() {
+    const { q, filter, subFilter } = this.state; const s = q.trim().toLowerCase();
+    return this.W.map(w => (filter === 'Todas' || w.forma === filter) && (subFilter === 'Todas' || w.sub === subFilter) && (!s || [w.title, w.forma, w.sub, w.color, w.tecnica, w.code, w.desc, w.album, ...(w.tags || []), ...(w.refs || []), ...(w.temas || []), w.interp || ''].join(' ').toLowerCase().includes(s)));
+  }
+
+  pos(i, t) {
+    const a = this.sph[i], b = this.cld[i]; if (!a || !b) return [0, 0, 0];
+    const p = [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t, a[2] + (b[2] - a[2]) * t], q = this.psp && this.psp[i], u = this.tp || 0;
+    if (!q || u < 0.001) return p;
+    return [p[0] + (q[0] - p[0]) * u, p[1] + (q[1] - p[1]) * u, p[2] + (q[2] + this.pz - p[2]) * u];
+  }
+
+  frame() {
+    const stage = this.stageRef.current; if (!stage) return;
+    const w = stage.clientWidth, h = stage.clientHeight, dpr = window.devicePixelRatio || 1;
+    if (this.canvas.width !== w * dpr || this.canvas.height !== h * dpr) { this.canvas.width = w * dpr; this.canvas.height = h * dpr; }
+    const ctx = this.ctx; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, w, h);
+
+    const sel = this.state.sel, wide = w > 1000, mid = w > 720;
+    const persp = this.state.mode === 'perspectiva';
+    if ((this.props.autoRotate ?? true) && sel === null && !persp && !this.dragging()) this.tgt.ry += 0.0011;
+    const c = this.cam, g = this.tgt, k = 0.07;
+    this.tp = (this.tp || 0) + ((persp ? 1 : 0) - (this.tp || 0)) * 0.06;
+    if (persp) {
+      const base = Math.round(g.ry / (Math.PI * 2)) * Math.PI * 2;
+      g.ry = base + Math.max(-0.45, Math.min(0.45, g.ry - base)); g.rx = Math.max(-0.3, Math.min(0.3, g.rx));
+      g.d = Math.max(560, Math.min(900, g.d));
+    }
+    if (this.cruise) {
+      if (this.dragging() || sel !== null || this.state.touring) this.cruise = 0;
+      else {
+        const end = this.pspLen || 0, left = end - this.pzT;
+        this.cruise = Math.min(1.3, this.cruise + 0.006);
+        const v = Math.min(this.cruise, Math.max(0.15, left * 0.01));
+        this.pzT = Math.min(end, this.pzT + v);
+        if (left <= 0.5) this.cruise = 0;
+      }
+    }
+    this.pz += ((this.pzT || 0) - this.pz) * (this.cruise ? 0.05 : 0.08);
+    c.ry += (g.ry - c.ry) * k; c.rx += (g.rx - c.rx) * k; c.d += (g.d - c.d) * k;
+    this.t += ((this.state.mode === 'nube' ? 1 : 0) - this.t) * 0.06;
+    const left = mid && this.menuShown() ? 330 : 0, right = sel !== null && mid ? 370 : 0;
+    const cxT = left + (w - left - right) / 2; this.cx = this.cx === null ? cxT : this.cx + (cxT - this.cx) * 0.08;
+    const cx = this.cx, cy = h / 2 + 20, f = Math.min(w, h) * 1.05;
+    const cY = Math.cos(c.ry), sY = Math.sin(c.ry), cX = Math.cos(c.rx), sX = Math.sin(c.rx);
+    const proj = p => {
+      const x1 = p[0] * cY + p[2] * sY, z1 = -p[0] * sY + p[2] * cY;
+      const y2 = p[1] * cX - z1 * sX, z2 = p[1] * sX + z1 * cX;
+      const den = c.d - z2, s = den > 40 ? f / den : 0;
+      return { x: cx + x1 * s, y: cy + y2 * s, z: z2, s, ok: den > 40 };
+    };
+    const rgba = (col, a) => 'rgba(' + col[0] + ',' + col[1] + ',' + col[2] + ',' + Math.max(0, Math.min(1, a)).toFixed(3) + ')';
+
+    for (const d of this.dust) {
+      const p = proj(d); if (!p.ok || p.x < 0 || p.x > w || p.y < 0 || p.y > h) continue;
+      ctx.fillStyle = rgba(this.cText, 0.08 + d[3] * 0.22 * Math.min(1, p.s));
+      ctx.fillRect(p.x, p.y, 1.2, 1.2);
+    }
+
+    const depthA = z => 0.3 + 0.7 * Math.max(0, Math.min(1, (z + 400) / 800));
+    if (this.tp > 0.01 && this.pspLen) {
+      const ga = this.tp * 0.16 * (sel === null ? 1 : 0.3), seg = 120;
+      ctx.lineWidth = 1;
+      const line = (x, y, z0, z1) => { for (let z = z0; z > z1; z -= seg) { const a = proj([x, y, z + this.pz]), b = proj([x, y, z - seg + this.pz]); if (!a.ok || !b.ok) continue; ctx.strokeStyle = rgba(this.cAccent, ga * depthA(a.z)); ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke(); } };
+      const z0 = 600, z1 = 60 - this.pspLen - 600;
+      [[-300, 150], [300, 150], [-300, -150], [300, -150], [-100, 150], [100, 150]].forEach(([x, y]) => line(x, y, z0, z1));
+      for (let z = z0; z > z1; z -= 240) {
+        const a = proj([-300, 150, z + this.pz]), b = proj([300, 150, z + this.pz]); if (!a.ok || !b.ok) continue;
+        ctx.strokeStyle = rgba(this.cAccent, ga * 0.6 * depthA(a.z)); ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+      }
+    }
+    const ringA = (1 - this.t) * (1 - this.tp) * 0.13;
+    if (ringA > 0.005) {
+      const R = 330, rings = [];
+      for (const lat of [-0.5, 0, 0.5]) rings.push(a => [Math.cos(a) * R * Math.cos(lat), Math.sin(lat) * R, Math.sin(a) * R * Math.cos(lat)]);
+      for (const lon of [0, Math.PI / 3, 2 * Math.PI / 3]) rings.push(a => [Math.cos(a) * Math.cos(lon) * R, Math.sin(a) * R, Math.cos(a) * Math.sin(lon) * R]);
+      ctx.lineWidth = 1;
+      for (const fn of rings) {
+        let prev = null;
+        for (let i = 0; i <= 96; i++) {
+          const p = proj(fn(i / 96 * Math.PI * 2));
+          if (prev) { ctx.strokeStyle = rgba(this.cNeutral, ringA * (0.35 + 0.65 * (p.z + R) / (2 * R))); ctx.beginPath(); ctx.moveTo(prev.x, prev.y); ctx.lineTo(p.x, p.y); ctx.stroke(); }
+          prev = p;
+        }
+      }
+    }
+
+    const P = this.W.map((_, i) => proj(this.pos(i, this.t)));
+    this.ft = (this.ft || 0) + ((sel !== null ? 1 : 0) - (this.ft || 0)) * 0.08;
+    const ft = this.ft, flat = {};
+    if (sel !== null) {
+      const dl = [...this.adj[sel]], il = this.indirectOf(sel).map(r => r.id).filter(id => !this.adj[sel].has(id));
+      const avail = Math.max(220, Math.min(w - left - right - 200, h - 160)), base = avail / 900;
+      flat[sel] = { x: cx, y: cy, s: 1.7 * base, z: 900 };
+      dl.forEach((id, k) => { const a = -Math.PI / 2 + k / dl.length * Math.PI * 2; flat[id] = { x: cx + Math.cos(a) * avail * 0.27, y: cy + Math.sin(a) * avail * 0.27, s: base, z: 800 }; });
+      il.forEach((id, k) => { const a = -Math.PI / 2 + (k + 0.5) / il.length * Math.PI * 2; flat[id] = { x: cx + Math.cos(a) * avail * 0.42, y: cy + Math.sin(a) * avail * 0.42, s: 0.65 * base, z: 700 }; });
+    }
+    P.forEach((p, i) => {
+      const nd = this.nodes[i], f = flat[i];
+      nd.ff = (nd.ff || 0) + ((f ? 1 : 0) - (nd.ff || 0)) * 0.07;
+      if (f) {
+        if (nd.ft == null || nd.ff < 0.02) nd.ft = { ...f };
+        else for (const k of ['x', 'y', 's', 'z']) nd.ft[k] += (f[k] - nd.ft[k]) * 0.1;
+      }
+      if (nd.ff < 0.001 || !nd.ft) return;
+      const e = nd.ff * nd.ff * (3 - 2 * nd.ff), q = nd.ft, b = p.ok ? p : q;
+      P[i] = { x: b.x + (q.x - b.x) * e, y: b.y + (q.y - b.y) * e, s: b.s + (q.s - b.s) * e, z: b.z + (q.z - b.z) * e, ok: true };
+    });
+    const m = this.matches();
+    const related = sel !== null ? new Set([...this.adj[sel], ...this.indirectOf(sel).map(r => r.id)]) : null;
+    const showInd = this.props.showIndirect ?? true;
+
+    const placed = [], lbl = [];
+    for (const g of this.subs) {
+      const pts = g.ids.map(i => P[i]).filter(p => p.ok); if (!pts.length) { g.lb.style.opacity = 0; continue; }
+      const gx = pts.reduce((a, p) => a + p.x, 0) / pts.length, gy = pts.reduce((a, p) => a + p.y, 0) / pts.length;
+      const sc = pts.reduce((a, p) => a + p.s, 0) / pts.length;
+      const rad = Math.max(...pts.map(p => Math.hypot(p.x - gx, p.y - gy))) + 92 * sc;
+      const on = g.ids.some(i => m[i]);
+      if (sel !== null && !g.ids.some(i => i === sel || related.has(i))) { g.lb.style.opacity = 0; continue; }
+      let al = (0.12 + this.t * 0.18) * (on ? 1 : 0.2) * (1 - ft) * (1 - this.tp);
+      if (ft > 0.3 || this.tp > 0.3) { g.lb.style.opacity = 0; continue; }
+      if (sel !== null) al *= g.ids.includes(sel) ? 2.4 : 0.4;
+      const zA = depthA(pts.reduce((a, p) => a + p.z, 0) / pts.length);
+      const gr = ctx.createRadialGradient(gx, gy, rad * 0.6, gx, gy, rad);
+      gr.addColorStop(0, rgba(this.cAccent, 0)); gr.addColorStop(1, rgba(this.cAccent, al * 0.25 * zA));
+      ctx.fillStyle = gr; ctx.beginPath(); ctx.arc(gx, gy, rad, 0, Math.PI * 2); ctx.fill();
+      ctx.strokeStyle = rgba(this.cAccent, al * zA); ctx.lineWidth = 1; ctx.setLineDash([2, 6]);
+      ctx.beginPath(); ctx.arc(gx, gy, rad, 0, Math.PI * 2); ctx.stroke(); ctx.setLineDash([]);
+      const gz = pts.reduce((a, p) => a + p.z, 0) / pts.length, isSelG = sel !== null && g.ids.includes(sel), isHov = this.hover != null && g.ids.includes(this.hover);
+      lbl.push({ g, x: gx, y: gy - rad - 6, z: gz, pri: isSelG || isHov ? 1e6 : gz, show: on && (isSelG || isHov || (sel === null && gz > -120)) });
+    }
+    lbl.sort((a, b) => b.pri - a.pri);
+    for (const L of lbl) {
+      const el = L.g.lb, bw = el.offsetWidth, bh = el.offsetHeight;
+      const box = { x: L.x - bw / 2, y: L.y - bh, w: bw, h: bh };
+      const hit = placed.some(b => box.x < b.x + b.w + 6 && b.x < box.x + box.w + 6 && box.y < b.y + b.h + 4 && b.y < box.y + box.h + 4);
+      const vis = L.show && !hit;
+      if (vis) placed.push(box);
+      el.style.opacity = vis ? (0.55 + 0.45 * depthA(L.z)).toFixed(2) : 0;
+      el.style.transform = 'translate(' + box.x.toFixed(1) + 'px,' + box.y.toFixed(1) + 'px)';
+    }
+    for (const e of []) {
+      if (!e.d && !showInd) continue;
+      const a = P[e.a], b = P[e.b]; if (!a.ok || !b.ok) continue;
+      const touch = sel !== null && (e.a === sel || e.b === sel);
+      let al = e.d ? 0.38 : 0.1, lw = e.d ? 1 : 0.75;
+      if (sel !== null) { if (!touch) continue; al = e.d ? 0.95 : 0.45; lw = e.d ? 1.6 : 1; }
+      if (!(m[e.a] && m[e.b])) al *= 0.12;
+      al *= (depthA(a.z) + depthA(b.z)) / 2;
+      if (al < 0.01) continue;
+      const col = e.d ? this.cAccent : this.cText;
+      const gr = ctx.createLinearGradient(a.x, a.y, b.x, b.y);
+      gr.addColorStop(0, rgba(col, 0)); gr.addColorStop(0.18, rgba(col, al)); gr.addColorStop(0.82, rgba(col, al)); gr.addColorStop(1, rgba(col, 0));
+      ctx.strokeStyle = gr; ctx.lineWidth = lw; ctx.setLineDash(e.d ? [] : [3, 5]);
+      ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+    }
+    ctx.setLineDash([]);
+
+    P.forEach((p0, i) => {
+      let p = p0;
+      const nd = this.nodes[i];
+      if (!p.ok) { nd.el.style.opacity = 0; return; }
+      let s = p.s * 0.95;
+      let op = depthA(p.z);
+      const zt = 0;
+      nd.hz = (nd.hz || 0) + (zt - (nd.hz || 0)) * 0.14;
+      if (nd.hz > 0.002) {
+        const im = nd.box.firstChild, ar = im && im.naturalWidth ? im.naturalWidth / im.naturalHeight : 1;
+        const dw = 150 * Math.min(1, ar), dh = 150 * Math.min(1, 1 / ar), zs = Math.min(0.8 * w / dw, 0.8 * h / dh);
+        const e = nd.hz * nd.hz * (3 - 2 * nd.hz);
+        p = { ...p, x: p.x + (w / 2 - p.x) * e, y: p.y + (h / 2 - p.y) * e, z: p.z + (5000 - p.z) * e };
+        s = s + (zs - s) * e;
+      }
+      if (!m[i]) op *= 0.1;
+      const hideT = sel !== null && i !== sel && !related.has(i) ? 0 : 1;
+      nd.fade = nd.fade == null ? hideT : nd.fade + (hideT - nd.fade) * 0.12;
+      if (nd.fade < 0.02) { if (nd.el.style.visibility !== 'hidden') { nd.el.style.visibility = 'hidden'; nd.el.style.opacity = 0; } return; }
+      if (nd.el.style.visibility === 'hidden') nd.el.style.visibility = 'visible';
+      op *= nd.fade;
+      if (nd.hz > 0.002) op = op + (1 - op) * nd.hz;
+      nd.el.style.transform = 'translate(' + (p.x - 75).toFixed(1) + 'px,' + (p.y - 75).toFixed(1) + 'px) scale(' + s.toFixed(3) + ')';
+      nd.el.style.zIndex = nd.hz > 0.01 ? 2900 : Math.round(1000 + p.z);
+      nd.el.style.opacity = op.toFixed(3);
+      nd.el.style.pointerEvents = m[i] ? 'auto' : 'none';
+      const isSel = i === sel, isDirect = sel !== null && this.adj[sel].has(i);
+      nd.box.style.boxShadow = 'none';
+      nd.cap.style.opacity = nd.hz > 0.05 ? 0 : this.hover === i ? 1 : 0;
+      const zOn = isSel && ft > 0.85 && !this.state.viewer;
+      nd.zb.style.opacity = zOn ? 1 : 0; nd.zb.style.pointerEvents = zOn ? 'auto' : 'none'; nd.zb.style.scale = (1 / Math.max(0.3, s)).toFixed(3);
+      nd.cap.style.fontSize = (ft > 0.5 ? 12 / Math.max(0.15, s) : 13 / Math.max(0.6, s)).toFixed(1) + 'px';
+    });
+  }
+
+  toMode(m) {
+    if (this.state.mode === 'perspectiva') { this.tgt.d = 1050; this.tgt.rx = -0.18; }
+    this.setState({ mode: m }, () => this.state.sel !== null && this.select(this.state.sel));
+  }
+  openViewer(id) { const w = this.W[id]; if (!w) return; this.stopTour && this.stopTour(); this.wakeInfo(); this.setState({ viewer: true, viewerId: id, viewerSrc: "'" + (w.imgL || w.img) + "'", viewerTitle: w.title, viewerInterp: w.interp || '', viewerTemas: (w.temas || []).join(' · ') + (w.refs && w.refs.length ? ' — referencias posibles' : ''), viewerRefs: w.refs || [], viewerKicker: [w.forma, w.sub].filter(Boolean).join(' / ') }); }
+  isSeen(id) {
+    if (!this._seen) { try { this._seen = new Set(JSON.parse(localStorage.getItem('iconosfera.vistas') || '[]')); } catch (e) { this._seen = new Set(); } }
+    return this._seen.has(String(id));
+  }
+  markSeen(ids) {
+    this.isSeen('');
+    let ch = false; (ids || []).forEach(id => { id = String(id); if (!this._seen.has(id)) { this._seen.add(id); ch = true; } });
+    if (ch) try { localStorage.setItem('iconosfera.vistas', JSON.stringify([...this._seen])); } catch (e) {}
+  }
+  wakeInfo() { clearTimeout(this.idleT); if (this.state.viewerIdle) this.setState({ viewerIdle: false }); this.idleT = setTimeout(() => this.setState({ viewerIdle: true }), 6000); }
+  closeViewer() { clearTimeout(this.idleT); this.setState({ viewer: false }); }
+  viewerDownloads() {
+    const w = this.W[this.state.viewerId]; if (!w) return [];
+    const base = (w.title || 'iconosfera').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    const opts = [];
+    if (w.imgL) opts.push({ url: w.imgL, label: 'Alta resolución', name: base + '.jpg' });
+    if (w.img && w.img !== w.imgL) opts.push({ url: w.img, label: 'Media', name: base + '-media.jpg' });
+    return opts.map(o => ({ ...o, title: 'Descargar ' + o.label.toLowerCase(), go: e => {
+      e.preventDefault(); e.stopPropagation();
+      fetch(o.url).then(r => { if (!r.ok) throw 0; return r.blob(); }).then(b => {
+        const u = URL.createObjectURL(b), a = document.createElement('a');
+        a.href = u; a.download = o.name; document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(() => URL.revokeObjectURL(u), 4000);
+      }).catch(() => window.open(o.url, '_blank', 'noopener'));
+    } }));
+  }
+  viewerSibs() { const w = this.W[this.state.viewerId]; if (!w) return []; const key = w.albumId != null ? 'albumId' : 'album'; const out = []; for (const k in this.W) { const x = this.W[k]; if (x && x[key] === w[key]) out.push(+k); } return out; }
+  viewerStep(d) { const L = this.viewerSibs(); if (L.length < 2) return; const i = L.indexOf(+this.state.viewerId); this.openViewer(L[(i + d + L.length) % L.length]); }
+  arCache = {};
+  measure(src) {
+    if (this.arCache[src] === 0) return 0; this.arCache[src] = 0;
+    const im = new Image(); im.onload = () => { this.arCache[src] = im.naturalWidth / im.naturalHeight; this.forceUpdate(); }; im.src = src;
+    return 0;
+  }
+  menuShown() { return this.state.menu && !(this.state.sel !== null && window.innerWidth < 1260); }
+  select(id) {
+    if (!this.sph) return;
+    const p = this.pos(id, this.state.mode === 'nube' ? 1 : 0);
+    const hz = Math.hypot(p[0], p[2]);
+    let ry = Math.atan2(-p[0], p[2]);
+    while (ry - this.tgt.ry > Math.PI) ry -= Math.PI * 2;
+    while (ry - this.tgt.ry < -Math.PI) ry += Math.PI * 2;
+    this.setState({ sel: id });
+  }
+  close() { this.setState({ sel: null }); }
+
+  startTour() {
+    const order = [0, 6, 2, 1, 4, 11, 12, 5, 7, 3, 8, 9, 10, 13];
+    let i = this.state.sel !== null ? Math.max(0, order.indexOf(this.state.sel)) : 0;
+    this.select(order[i]);
+    clearInterval(this.tourT);
+    this.tourT = setInterval(() => { i = (i + 1) % order.length; this.select(order[i]); }, (this.props.tourSeconds ?? 6) * 1000);
+    this.setState({ touring: true });
+  }
+  stopTour() { if (this.state.touring) { clearInterval(this.tourT); this.setState({ touring: false }); } }
+
+  renderVals() {
+    if (this.state.booted) this.markSeen(this.state.active);
+    const W = this.W, st = this.state;
+    const item = id => ({ id, title: W[id].title, img: W[id].img, bg: "'" + W[id].img + "'", meta: W[id].forma + ' · ' + W[id].sub + (st.sel !== null && W[st.sel] && W[id].albumId !== W[st.sel].albumId ? ' · otra colección: ' + W[id].album : ''), go: () => { this.stopTour(); this.select(id); } });
+    const sel = st.sel !== null && W[st.sel] ? W[st.sel] : null;
+    const q = st.q.trim().toLowerCase();
+    const results = q ? W.filter(w => [w.title, w.forma, w.sub, w.color, w.tecnica, w.code].join(' ').toLowerCase().includes(q)).map(w => item(w.id)) : [];
+    const forms = ['Todas', ...Object.keys(this.centers)];
+    return {
+      stageRef: this.stageRef,
+      toggleMenu: () => this.setState({ menu: !st.menu }),
+      menuLabel: st.menu ? 'Ocultar menú' : 'Mostrar menú',
+      menuIcon: st.menu ? 'ph ph-sidebar-simple' : 'ph ph-list',
+      menuTransform: this.menuShown() ? 'none' : 'translateX(calc(-100% - 40px))',
+      menuOpacity: this.menuShown() ? 1 : 0, menuPE: this.menuShown() ? 'auto' : 'none',
+      toggleFs: () => { document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen?.().catch(() => {}); },
+      fsLabel: st.fs ? 'Salir de pantalla completa' : 'Pantalla completa',
+      fsIcon: st.fs ? 'ph ph-corners-in' : 'ph ph-corners-out',
+      navFull: st.vw >= 1180, navCompact: st.vw < 1180,
+      count: st.booted ? W.length : '—',
+      q: st.q,
+      onSearch: e => this.setState({ q: e.target.value }),
+      results, hasResults: results.length > 0, noResults: !!q && results.length === 0,
+      filters: forms.map(f => ({ label: f, cls: st.filter === f ? 'tag-accent' : 'tag-neutral', go: () => this.setState({ filter: f, subFilter: 'Todas' }) })),
+      hasSubs: st.filter !== 'Todas', filterName: st.filter,
+      subFilters: st.filter === 'Todas' ? [] : ['Todas', ...new Set(W.filter(w => w.forma === st.filter).map(w => w.sub))].map(f => ({ label: f, cls: st.subFilter === f ? 'tag-accent' : 'tag-neutral', go: () => this.setState({ subFilter: f }) })),
+      isSphere: st.mode === 'esfera', isCloud: st.mode === 'nube', isPersp: st.mode === 'perspectiva',
+      toPersp: () => { this.tgt.ry = Math.round(this.tgt.ry / (Math.PI * 2)) * Math.PI * 2; this.tgt.ry += 0.033; this.tgt.rx = 0.027; this.tgt.d = 720; this.setState({ mode: 'perspectiva' }); },
+      toSphere: () => this.toMode('esfera'),
+      _x1: () => this.setState({}, () => st.sel !== null && this.select(st.sel)),
+      toCloud: () => this.toMode('nube'),
+      _x2: () => this.setState({}, () => this.state.sel !== null && this.select(this.state.sel)),
+      toggleTour: () => st.touring ? this.stopTour() : this.startTour(),
+      tourLabel: st.touring ? 'Detener recorrido' : 'Recorrido guiado',
+      tourIcon: st.touring ? 'ph-pause' : 'ph-play',
+      tourCls: st.touring ? 'btn-primary' : 'btn-secondary',
+      hasSel: !!sel,
+      closeViewer: () => this.closeViewer(),
+      viewerPrev: e => { e.stopPropagation(); this.viewerStep(-1); }, viewerNext: e => { e.stopPropagation(); this.viewerStep(1); }, viewerToggleInfo: e => { e.stopPropagation(); this.setState(s => ({ viewerHide: !s.viewerHide })); },
+      viewerInfoOp: st.viewerHide || st.viewerIdle ? 0 : 1, viewerWake: () => this.wakeInfo(), viewerInfoIcon: st.viewerHide ? 'ph ph-eye' : 'ph ph-eye-slash', viewerInfoLabel: st.viewerHide ? 'Mostrar información' : 'Ocultar información', viewerCount: (() => { const L = st.viewer ? this.viewerSibs() : []; return L.length > 1 ? (L.indexOf(+st.viewerId) + 1) + ' / ' + L.length : ''; })(),
+      viewerOpacity: st.viewer ? 1 : 0, viewerPE: st.viewer ? 'auto' : 'none', viewerScale: st.viewer ? 'scale(1)' : 'scale(0.6)',
+      viewerDownloads: st.viewer ? this.viewerDownloads() : [], viewerNoInterp: !!st.viewer && !st.viewerInterp,
+      viewerSrc: st.viewerSrc || "''", viewerTitle: st.viewerTitle || '', viewerKicker: st.viewerKicker || '', viewerHasInterp: !!st.viewerInterp, viewerInterp: st.viewerInterp || '', viewerTemas: st.viewerTemas || '', viewerRefs: st.viewerRefs || [],
+      hasInterp: !!(sel && sel.interp), selTemas: sel && sel.temas ? sel.temas : [], selRefs: sel && sel.refs ? sel.refs : [],
+      selAR: sel ? (this.arCache[sel.imgL || sel.img] || this.measure(sel.imgL || sel.img) || 1.333) : 1,
+      sel: sel ? { ...sel, bg: "'" + (sel.imgL || sel.img) + "'" } : {},
+      selExtra: sel ? (sel.tags ? sel.tags.filter(t => t !== sel.forma && t !== sel.sub).slice(0, 6) : [sel.color, sel.tecnica].filter(Boolean)) : [],
+      hasSelExtra: !!(sel && sel.tags && sel.tags.length),
+      selExtraBtns: sel && sel.tags ? sel.tags.filter(t => t !== sel.forma && t !== sel.sub).map(t => ({ label: t, go: () => this.setState({ q: t, filter: 'Todas', subFilter: 'Todas' }) })) : [],
+      selUrl: sel && sel.url ? sel.url : '', hasSelUrl: !!(sel && sel.url),
+      sources: st.albums.map(a => { const on = st.booted && st.active[0] === a.id; return { id: a.id, title: a.title, label: a.title + ' (' + a.count + ')' + (a.account ? ' · ' + a.account : ''), bg: "'" + (a.thumb || '') + "'", op: on ? 1 : 0.62, ring: on ? '1px solid var(--color-accent)' : 'none', col: on ? 'var(--t-2)' : 'var(--t-muted)', go: () => this.loadAlbum(a.id), seen: this.isSeen(a.id), acct: a.account || (a.id === 'local' ? 'Local' : '') }; }),
+      _srcOld: [].filter(o => !st.active.includes(o.id)),
+      activeChips: st.active.map(id => ({ label: id === 'local' ? 'Radiolarios · local' : ((st.albums.find(a => a.id === id) || {}).title || 'Flickr'), canRemove: st.active.length > 1, hint: st.active.length > 1 ? 'Quitar colección' : '', remove: () => this.removeAlbum(id) })),
+      srcName: st.active.length > 1 ? st.active.length + ' colecciones cruzadas' : (st.active[0] === 'local' ? 'Colección local' : ((st.albums.find(a => a.id === st.active[0]) || {}).title || 'Flickr')),
+      stageOp: st.booted ? 1 : 0,
+      albumTitle: !st.booted ? 'Cargando colección…' : st.active[0] === 'local' ? 'Radiolarios' : (((Component.CACHE && Component.CACHE.albumes[st.active[0]]) || {}).titulo || (st.albums.find(a => a.id === st.active[0]) || {}).title || 'Morfogénesis'),
+      ...(() => { const ca = (Component.CACHE && Component.CACHE.albumes && Component.CACHE.albumes[st.active[0]]) || {}; const al = st.albums.find(x => x.id === st.active[0]) || {}; const au = ca.autor || (al.owner === '193399231@N08' ? 'Roberto Real de León' : ''); return { albumAuthor: au, hasAlbumAuthor: !!(st.booted && au) }; })(),
+      albumDesc: !st.booted ? '' : st.active[0] === 'local' ? 'Formas biológicas como arquitectura. Cada obra se enlaza con otras por relación curada o por rasgos compartidos de forma, color y técnica.' : (((Component.CACHE && Component.CACHE.albumes[st.active[0]]) || {}).resumen || 'Cada obra se enlaza con otras por relación curada o por rasgos compartidos de forma, color y técnica.'),
+      pickAlbum: e => { const v = e.target.value; e.target.value = ''; this.loadAlbum(v); },
+      selAlbum: sel && sel.album ? sel.album : '',
+      crossCount: sel && sel.cross ? sel.cross.length : 0,
+      exportCache: () => this.exportCache(),
+      srcStatus: st.loading ? (st.progress ? 'Analizando imágenes ' + st.progress : 'Cargando desde Flickr…') : st.flickrErr ? st.flickrErr : st.albums.length ? st.albums.length + ' álbumes · ' + new Set(st.albums.map(a => a.owner)).size + ' cuentas de Flickr' : 'Conectando con Flickr…',
+      close: () => { this.stopTour(); this.close(); },
+      direct: sel ? [...this.adj[sel.id]].map(item) : [],
+      indirect: sel ? this.indirectOf(sel.id).map(r => ({ ...item(r.id), why: r.why })) : []
+    };
+  }
+}
+</script>
+</body>
+</html>
